@@ -73,7 +73,7 @@ export class Snake {
                     return new Field(this.head.x + 1, this.head.y);
                 }
             case Direction.DOWN:
-                if(this.head.y + 1 > Constant.GAME_HEIGHT-1) {
+                if(this.head.y + 1 >= Constant.GAME_HEIGHT) {
                     return new Field(this.head.x, 0);
                 } else {
                     return new Field(this.head.x, this.head.y + 1);
