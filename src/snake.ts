@@ -50,12 +50,29 @@ export class Snake {
 
         if(this.head.detectCollision(this.game.food)) {
             this.size++;
+            this.game.snakeFoundFood();
         }
 
         // fix the worm size
         if (this.tail.length > this.size) {
             this.tail.splice(0, 1);
         }
+    }
+
+    public fieldsAreEmpty(field: Field): boolean {
+        var collision : boolean = false;
+
+        if(this.head.detectCollision(field)) {
+            collision = true;
+        }
+
+        for(var i: number = 0; i < this.tail.length; i++) {
+            if(this.tail[i].detectCollision(field)) {
+                collision = true;
+            }
+        }
+
+        return collision;
     }
 
 

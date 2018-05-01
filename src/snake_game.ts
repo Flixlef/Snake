@@ -43,7 +43,18 @@ export class SnakeGame {
     }
 
     private placeNewFood(): void {
-        return;
+        var x : number = Math.floor(Math.random() * (Constant.GAME_WIDTH - 1 + 1)) + 1;
+        var y : number = Math.floor(Math.random() * (Constant.GAME_HEIGHT - 1 + 1)) + 1;
+        var food : Food = new Food(x, y);
+
+        while(this.snake.fieldsAreEmpty(food)) {
+            x = Math.floor(Math.random() * (Constant.GAME_WIDTH - 1 + 1)) + 1;
+            y = Math.floor(Math.random() * (Constant.GAME_HEIGHT - 1 + 1)) + 1;
+            food = new Food(x, y);
+        }
+
+        this.food = food;
+        console.log(this.food);
     }
 
     private increaseScore(): void {
