@@ -54,7 +54,6 @@ export class SnakeGame {
         }
 
         this.food = food;
-        console.log(this.food);
     }
 
     private increaseScore(): void {
