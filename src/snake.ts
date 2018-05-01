@@ -47,15 +47,26 @@ export class Snake {
 
         // get next position
         this.head = this.getNext();
+
         if(this.head.detectCollision(this.game.food)) {
             this.size++;
-            console.log("Food");
         }
 
         // fix the worm size
         if (this.tail.length > this.size) {
             this.tail.splice(0, 1);
         }
+    }
+
+
+    private snakeSlidesIntoItself(): boolean {
+        for(var i: number = 0; i < this.tail.length; i++) {
+            if(this.head.detectCollision(this.tail[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private getNext(): Field {
