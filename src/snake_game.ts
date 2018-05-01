@@ -12,14 +12,13 @@ export class SnakeGame {
     constructor() {
         var canvas : HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("snake");
         this.ctx = canvas.getContext("2d");
-        this.snake = new Snake(this);
-        this.food = new Food(4, 4);
-        this.draw();
+
+        this.startNewGame();
+
         setInterval(() => {
             this.nextStep();
         }, 100);
         this.keyboardInput();
-        this.score = 0;
     }
 
     public nextStep(): void {
@@ -27,9 +26,20 @@ export class SnakeGame {
         this.draw();
     }
 
+    public gameOver(): void {
+        return;
+    }
+
     public snakeFoundFood(): void {
         this.placeNewFood();
         this.increaseScore();
+    }
+
+    public startNewGame(): void {
+        this.snake = new Snake(this);
+        this.food = new Food(4, 4);
+        this.draw();
+        this.score = 0;
     }
 
     private placeNewFood(): void {
@@ -45,10 +55,6 @@ export class SnakeGame {
         this.ctx.fillRect(0, 0, Constant.GAME_WIDTH * Constant.FIELD_SIZE, Constant.GAME_HEIGHT * Constant.FIELD_SIZE);
         this.food.draw(this.ctx);
         this.snake.draw(this.ctx);
-    }
-
-    private startGame(): void {
-        return;
     }
 
     private keyboardInput(): void {
