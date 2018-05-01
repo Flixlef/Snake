@@ -22,7 +22,10 @@ export class SnakeGame {
     }
 
     public nextStep(): void {
-        this.snake.move();
+        if(this.snake.move()) {
+            this.startNewGame();
+            return;
+        }
         this.draw();
     }
 

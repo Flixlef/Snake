@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/snake_game.ts',
   devtool: 'inline-source-map',
+  mode: 'production',
   watch: true,
   output: {
     filename: 'bundle.js',

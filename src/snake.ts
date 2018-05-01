@@ -38,7 +38,7 @@ export class Snake {
         this.direction = direction;
     }
 
-    public move(): void {
+    public move(): boolean {
         if(this.direction === undefined) {
             return;
         }
@@ -57,6 +57,8 @@ export class Snake {
         if (this.tail.length > this.size) {
             this.tail.splice(0, 1);
         }
+
+        return this.snakeSlidesIntoItself();
     }
 
     public fieldsAreEmpty(field: Field): boolean {
