@@ -61,25 +61,25 @@ export class Snake {
     private getNext(): Field {
         switch (this.direction) {
             case Direction.UP:
-                if(this.head.y - 1 < 0) {
+                if(this.head.y - 1 < 1) {
                     return new Field(this.head.x, Constant.GAME_HEIGHT);
                 } else {
                     return new Field(this.head.x, this.head.y - 1);
                 }
             case Direction.RIGHT:
                 if(this.head.x + 1 > Constant.GAME_WIDTH) {
-                    return new Field(0, this.head.y);
+                    return new Field(1, this.head.y);
                 } else {
                     return new Field(this.head.x + 1, this.head.y);
                 }
             case Direction.DOWN:
-                if(this.head.y + 1 >= Constant.GAME_HEIGHT) {
-                    return new Field(this.head.x, 0);
+                if(this.head.y === Constant.GAME_HEIGHT) {
+                    return new Field(this.head.x, 1);
                 } else {
                     return new Field(this.head.x, this.head.y + 1);
                 }
             case Direction.LEFT:
-                if(this.head.x - 1 < 0) {
+                if(this.head.x - 1 === 0) {
                     return new Field(Constant.GAME_WIDTH, this.head.y);
                 } else {
                     return new Field(this.head.x-1, this.head.y);
