@@ -6,7 +6,7 @@ module.exports = {
   mode: 'production',
   watch: true,
   output: {
-    filename: 'bundle.js',
+    filename: 'snake.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {

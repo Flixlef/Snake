@@ -10,6 +10,6 @@ export class Field {
     }
 
     public detectCollision(field: Field): boolean {
-        return (this.x === field.x && this.y === field.y);
+        return this.x === field.x && this.y === field.y;
     }
 }

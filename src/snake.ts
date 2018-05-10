@@ -11,6 +11,7 @@ export class Snake {
     private direction: Direction;
 
     constructor(game: SnakeGame) {
+        // totally random sets the snake @ [2,7]
         this.head = new Field(2, 7);
         this.tail = [];
         this.size = 0;
@@ -38,7 +39,7 @@ export class Snake {
         this.direction = direction;
     }
 
-    public move(): boolean {
+    public move(): void {
         if(this.direction === undefined) {
             return;
         }
@@ -57,11 +58,9 @@ export class Snake {
         if (this.tail.length > this.size) {
             this.tail.splice(0, 1);
         }
-
-        return this.snakeSlidesIntoItself();
     }
 
-    public fieldsAreEmpty(field: Field): boolean {
+    public snakeIsNotHere(field: Field): boolean {
         var collision : boolean = false;
 
         if(this.head.detectCollision(field)) {
@@ -78,7 +77,7 @@ export class Snake {
     }
 
 
-    private snakeSlidesIntoItself(): boolean {
+    public snakeSlidesIntoItself(): boolean {
         for(var i: number = 0; i < this.tail.length; i++) {
             if(this.head.detectCollision(this.tail[i])) {
                 return true;

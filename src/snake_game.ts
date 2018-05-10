@@ -17,20 +17,17 @@ export class SnakeGame {
 
         setInterval(() => {
             this.nextStep();
-        }, 100);
+        }, Constant.GAME_SPEED);
         this.keyboardInput();
     }
 
     public nextStep(): void {
-        if(this.snake.move()) {
+        this.snake.move();
+        if(this.snake.snakeSlidesIntoItself()) {
             this.startNewGame();
             return;
         }
         this.draw();
-    }
-
-    public gameOver(): void {
-        return;
     }
 
     public snakeFoundFood(): void {
@@ -50,7 +47,7 @@ export class SnakeGame {
         var y : number = Math.floor(Math.random() * (Constant.GAME_HEIGHT - 1 + 1)) + 1;
         var food : Food = new Food(x, y);
 
-        while(this.snake.fieldsAreEmpty(food)) {
+        while(this.snake.snakeIsNotHere(food)) {
             x = Math.floor(Math.random() * (Constant.GAME_WIDTH - 1 + 1)) + 1;
             y = Math.floor(Math.random() * (Constant.GAME_HEIGHT - 1 + 1)) + 1;
             food = new Food(x, y);
@@ -85,6 +82,7 @@ export class SnakeGame {
     }
 }
 
+// initialize & start the game
 var Game : SnakeGame = new SnakeGame();
 
 
